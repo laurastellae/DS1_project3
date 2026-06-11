@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Box Is Not Enough</title>
+
+  <style>
+    :root {
+      --bg: #f7f6f2;
+      --text: #1f1f1f;
+      --muted: #666;
+      --orange: #f2a51a;
+      --blue: #243b7a;
+      --paper: #fff7d6;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      min-height: 100vh;
+      padding: 48px 7vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--text);
+      color: white;
+    }
+
+    header .label {
+      width: fit-content;
+      background: var(--orange);
+      color: var(--text);
+      padding: 8px 14px;
+      font-weight: bold;
+      margin-bottom: 28px;
+      transform: rotate(-2deg);
+    }
+
+    h1 {
+      font-size: clamp(48px, 10vw, 110px);
+      line-height: 0.95;
+      margin: 0;
+      letter-spacing: -3px;
+    }
+
+    header p {
+      font-size: clamp(20px, 3vw, 30px);
+      max-width: 800px;
+      color: #ddd;
+      margin-top: 28px;
+    }
+
+    section {
+      padding: 80px 7vw;
+      border-bottom: 1px solid #ddd;
+    }
+
+    h2 {
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.05;
+      margin: 0 0 24px 0;
+      letter-spacing: -1px;
+    }
+
+    p {
+      max-width: 760px;
+      font-size: 18px;
+      margin-bottom: 24px;
+    }
+
+    .small-title {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .hero-grid,
+    .image-grid,
+    .protocol-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+      margin: 14px 0 8px 0;
+      font-size: 22px;
+    }
+
+    .card p {
+      font-size: 16px;
+      margin: 0;
+      color: #444;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-top: 32px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--paper);
+      border: 2px solid var(--text);
+      padding: 10px 16px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      box-shadow: 4px 4px 0 var(--orange);
+    }
+
+    .protocol-button {
+      width: 100%;
+      text-align: left;
+      border: 2px solid var(--text);
+      background: var(--white);
+      padding: 18px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .protocol-button:hover {
+      background: var(--paper);
+    }
+
+    .protocol-text {
+      display: none;
+      background: var(--paper);
+      border-left: 8px solid var(--orange);
+      padding: 18px;
+      border-radius: 8px;
+      font-size: 17px;
+    }
+
+    .protocol-text.active {
+      display: block;
+    }
+
+    .quote-section {
+      background: var(--blue);
+      color: white;
+    }
+
+    .quote {
+      font-size: clamp(34px, 6vw, 72px);
+      line-height: 1.1;
+      font-weight: bold;
+      max-width: 1000px;
+      letter-spacing: -2px;
+    }
+
+    footer {
+      padding: 48px 7vw;
+      background: var(--text);
+      color: white;
+      font-size: 16px;
+    }
+
+    footer p {
+      margin: 0;
+      color: #ddd;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="label">DS1(A) Protocol</div>
+    <h1>A Box Is<br>Not Enough</h1>
+    <p>A box needs to tell users what belongs there.</p>
+  </header>
+
+  <section>
+    <div class="small-title">Site</div>
+    <h2>N25 3D Printing Room</h2>
+    <p>
+      The 3D printing room already had boxes. The room also had a clear protocol:
+      clean printer beds, tools for removing prints, and finished prints temporarily
+      left by other users. However, this protocol was not clearly visible.
+    </p>
+
+    <div class="protocol-grid">
+      <div class="card">
+        <div class="tag">CLEAN BEDS</div>
+        <p>Clean printer beds used before starting a new print.</p>
+      </div>
+      <div class="card">
+        <div class="tag">TOOLS</div>
+        <p>Scrapers, hammers, and tools for removing prints from the bed.</p>
+      </div>
+      <div class="card">
+        <div class="tag">FINISHED PRINTS</div>
+        <p>Temporary storage for prints that have been removed by someone else.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="small-title">Before</div>
+    <h2>Containers Without Protocol</h2>
+    <p>
+      Before the intervention, people placed objects wherever there was space.
+      Tools, printer beds, support pieces, and finished prints shared the same visual field.
+      The problem was not the lack of storage. The problem was that the boxes did not
+      clearly communicate what action should happen there.
+    </p>
+
+    <div class="image-grid">
+      <div class="card">
+        <img src="images/before.jpg" alt="Before intervention">
+        <h3>Before</h3>
+        <p>The containers existed, but their roles were not visible enough.</p>
+      </div>
+      <div class="card">
+        <img src="images/prototype.jpg" alt="Prototype labels">
+        <h3>Prototype</h3>
+        <p>Temporary name tags began to make the system readable.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="small-title">Prototype</div>
+    <h2>A Name Is Not Yet a Rule</h2>
+    <p>
+      For the prototype, I added simple name tags such as Tools, Bed, and Printings.
+      It partially worked. People placed fewer random objects in the tool box, and the
+      space became easier to read. However, the prototype also showed that a label should
+      do more than name a box. It should guide behavior.
+    </p>
+
+    <div class="comparison">
+      <div class="card">
+        <img src="images/no-tags.jpg" alt="No tags setup">
+        <h3>Without Tags</h3>
+        <p>The space looked cleaner, but the rule was still ambiguous.</p>
+      </div>
+      <div class="card">
+        <img src="images/with-tags.jpg" alt="With tags setup">
+        <h3>With Tags</h3>
+        <p>The boxes began to tell users what belongs there.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="small-title">Final Intervention</div>
+    <h2>Protocol Labels</h2>
+    <p>
+      After the critique, I revised the intervention from simple name tags into protocol labels.
+      The categories remain fixed: clean beds, tools, and finished prints. The labels make these
+      fixed rules visible. For the finished prints box, I added a writable area so users can leave
+      temporary information such as names, dates, or notes.
+    </p>
+
+    <img src="images/advanced.jpg" alt="Advanced tag detail">
+  </section>
+
+  <section>
+    <div class="small-title">Tap to Read the Protocol</div>
+    <h2>What Should Happen Here?</h2>
+    <p>
+      In the room, visitors see boxes and labels. On this webpage, they can read the hidden
+      action behind each label.
+    </p>
+
+    <button class="protocol-button" onclick="showProtocol('beds')">CLEAN BEDS</button>
+    <div id="beds" class="protocol-text">
+      Take one before printing. Return only clean printer beds here.
+    </div>
+
+    <button class="protocol-button" onclick="showProtocol('tools')">TOOLS</button>
+    <div id="tools" class="protocol-text">
+      Use these tools to remove prints from the bed. Return them here after use.
+      Do not put support waste here.
+    </div>
+
+    <button class="protocol-button" onclick="showProtocol('prints')">FINISHED PRINTS</button>
+    <div id="prints" class="protocol-text">
+      Temporary storage for other users’ finished prints. Leave a name, date,
+      or note if needed.
+    </div>
+  </section>
+
+  <section>
+    <div class="small-title">What the Webpage Adds</div>
+    <h2>A Second Layer of Reading</h2>
+    <p>
+      The webpage adds a second layer of reading to the site. In the room, visitors see boxes
+      and labels. On the webpage, they can understand the hidden protocol behind those labels.
+      The page shows that the project is not simply about organizing objects, but about making
+      an existing rule readable.
+    </p>
+  </section>
+
+  <section class="quote-section">
+    <div class="quote">
+      I did not change the use of the boxes. I made their existing use visible.
+    </div>
+  </section>
+
+  <footer>
+    <p>Gyuri Kim · DS1(A) Protocol · N25 3D Printing Room</p>
+  </footer>
+
+  <script>
+    function showProtocol(id) {
+      const selected = document.getElementById(id);
+      selected.classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>
