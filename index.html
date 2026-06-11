@@ -7,17 +7,18 @@
   <title>Arrangement as Instruction</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+
     :root {
-      --bg: #f7f3ea;
-      --text: #171717;
-      --muted: #6b6257;
-      --white: #ffffff;
-      --orange: #f2a51a;
-      --orange-dark: #d28700;
-      --blue: #263b77;
-      --paper: #fff3c4;
-      --line: #d8d0c4;
-      --shadow: rgba(0, 0, 0, 0.12);
+      --black: #181818;
+      --white: #f7f7f7;
+      --paper: #f2f2f2;
+      --text: #111111;
+      --muted: #4a4a4a;
+      --accent: #ff5b61;
+      --line: #222222;
+      --gray-card: #e8e8e8;
+      --dark-gray: #3a3a3a;
     }
 
     * {
@@ -30,423 +31,812 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      background: var(--paper);
       color: var(--text);
-      line-height: 1.6;
     }
 
     img {
       width: 100%;
       display: block;
-      border-radius: 18px;
     }
 
-    section {
-      padding: 84px 7vw;
-      border-bottom: 1px solid var(--line);
+    /* =========================
+       00 HERO
+    ========================= */
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      padding: 72px 36px 48px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
-    .section-label {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--orange-dark);
-      margin-bottom: 14px;
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -56px;
+      top: 98px;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: var(--accent);
+      z-index: 0;
     }
 
-    h1, h2, h3 {
+    .hero-meta {
+      position: relative;
+      z-index: 1;
+      align-self: flex-end;
+      text-align: right;
+      font-size: 17px;
+      line-height: 1.45;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 42px;
+    }
+
+    .hero-title {
+      position: relative;
+      z-index: 1;
       margin: 0;
+      font-size: clamp(48px, 12vw, 96px);
       line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-place {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-intro {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      max-width: 620px;
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-intro strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    /* =========================
+       01 BEFORE
+    ========================= */
+
+    .before-section {
+      background: var(--paper);
+      color: var(--text);
+      padding: 24px 0 0;
+      border-top: 6px solid var(--black);
+    }
+
+    .before-header {
+      padding: 0 22px 18px;
+    }
+
+    .section-number {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-bottom: 2px;
+    }
+
+    .before-heading-wrap {
+      position: relative;
+    }
+
+    .before-title {
+      margin: 0;
+      font-size: clamp(32px, 9vw, 68px);
+      line-height: 0.9;
+      font-weight: 900;
+      letter-spacing: -0.065em;
+      text-transform: uppercase;
+    }
+
+    .before-title-small {
+      position: absolute;
+      right: 18px;
+      bottom: -16px;
+      font-size: clamp(18px, 5vw, 34px);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .before-main-image {
+      margin-top: 34px;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .caption {
+      text-align: center;
+      margin: 12px 0 12px;
+      font-size: 8px;
+      font-weight: 400;
+      letter-spacing: 0.45em;
+      color: #555;
+      text-transform: uppercase;
+    }
+
+    .text-block {
+      padding: 0 22px;
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: #222;
+    }
+
+    .protocol-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 34px 22px 30px;
+      text-align: center;
+    }
+
+    .protocol-card h3 {
+      margin: 0 0 16px;
+      font-size: 10px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+    }
+
+    .protocol-card p {
+      margin: 0;
+      font-size: 10px;
+      line-height: 1.32;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+    }
+
+    .problems-title {
+      text-align: center;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.32em;
+      margin: 10px 0 12px;
+      text-transform: uppercase;
+    }
+
+    .problem-image-wrap {
+      background: var(--black);
+      padding: 12px 0;
+    }
+
+    .problem-image-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .before-bottom-text {
+      padding: 20px 22px 46px;
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: #222;
+    }
+
+    /* =========================
+       02 INTERVENTION
+    ========================= */
+
+    .intervention-section {
+      background: var(--paper);
+      color: var(--text);
+      padding: 18px 8px 44px;
+    }
+
+    .intervention-topline {
+      height: 2px;
+      background: var(--black);
+      margin: 0 12px 8px;
+    }
+
+    .intervention-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      padding: 0 12px;
+    }
+
+    .intervention-number {
+      font-size: 19px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      text-align: right;
+    }
+
+    .intervention-title {
+      margin: 0;
+      padding: 0 12px;
+      font-size: clamp(48px, 12vw, 82px);
+      line-height: 0.9;
+      font-weight: 900;
+      letter-spacing: -0.065em;
+      text-transform: uppercase;
+    }
+
+    .intervention-intro {
+      padding: 22px 12px 8px;
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.38;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: #222;
+    }
+
+    .intervention-card {
+      background: var(--gray-card);
+      border-radius: 9px;
+      margin: 14px 0;
+      padding: 12px 12px 14px;
+    }
+
+    .intervention-card .card-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      color: #222;
+      margin-bottom: 7px;
+      text-transform: uppercase;
+    }
+
+    .intervention-card h3 {
+      margin: 0 0 3px;
+      font-size: 14px;
+      line-height: 1.25;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+    }
+
+    .intervention-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 300;
+      letter-spacing: -0.035em;
+      color: #222;
+    }
+
+    .picture-toggle {
+      margin-top: 8px;
+    }
+
+    .picture-toggle summary {
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+      width: fit-content;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .picture-toggle summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .picture-toggle summary::before {
+      content: "▶";
+      display: inline-block;
+      margin-right: 8px;
+      letter-spacing: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .picture-toggle[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .picture-toggle img {
+      margin-top: 12px;
+      width: 100%;
+      border-radius: 0;
+      display: block;
+    }
+
+    /* =========================
+       03 OBSERVATION
+    ========================= */
+
+    .observation-section {
+      background: var(--paper);
+      color: var(--text);
+      padding: 18px 0 0;
+    }
+
+    .observation-topline {
+      height: 2px;
+      background: var(--black);
+      margin: 0 18px 28px;
+    }
+
+    .observation-number {
+      padding: 0 18px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .observation-title {
+      margin: 0;
+      padding: 0 18px;
+      font-size: clamp(38px, 10vw, 72px);
+      line-height: 0.9;
+      font-weight: 900;
+      letter-spacing: -0.065em;
+      text-transform: uppercase;
+    }
+
+    .observation-intro {
+      padding: 22px 18px 18px;
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.38;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: #222;
+    }
+
+    .observation-grid-figma {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+    }
+
+    .observation-text-box {
+      min-height: 154px;
+      padding: 20px 13px;
+    }
+
+    .observation-text-box h3 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      line-height: 1.08;
+      font-weight: 800;
       letter-spacing: -0.04em;
     }
 
-    h1 {
-      font-size: clamp(56px, 16vw, 130px);
-    }
-
-    h2 {
-      font-size: clamp(36px, 8vw, 72px);
-      margin-bottom: 24px;
-    }
-
-    h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      max-width: 780px;
-      font-size: 18px;
-      margin: 0 0 22px;
-    }
-
-    .small {
-      font-size: 15px;
-      color: var(--muted);
-    }
-
-    .hero {
-      min-height: 100vh;
-      padding: 48px 7vw;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: var(--text);
-      color: var(--white);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: -80px;
-      bottom: -80px;
-      width: 260px;
-      height: 260px;
-      background: var(--orange);
-      border-radius: 50%;
-      opacity: 0.9;
-    }
-
-    .hero-tag {
-      width: fit-content;
-      background: var(--paper);
-      color: var(--text);
-      padding: 10px 16px;
-      font-weight: 900;
-      margin-bottom: 32px;
-      box-shadow: 6px 6px 0 var(--orange);
-      transform: rotate(-2deg);
-      z-index: 1;
-    }
-
-    .hero p {
-      font-size: clamp(21px, 5vw, 34px);
-      color: #e8e1d6;
-      margin-top: 28px;
-      z-index: 1;
-    }
-
-    .hero .bottom-note {
-      margin-top: 60px;
-      font-size: 15px;
-      color: #bbb;
-      z-index: 1;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
-      margin-top: 34px;
-    }
-
-    .card {
-      background: var(--white);
-      padding: 22px;
-      border-radius: 20px;
-      box-shadow: 0 8px 26px var(--shadow);
-    }
-
-    .card img {
-      margin-bottom: 18px;
-    }
-
-    .tag {
-      display: inline-block;
-      background: var(--paper);
-      border: 2px solid var(--text);
-      padding: 10px 14px;
-      font-weight: 900;
-      margin-bottom: 14px;
-      box-shadow: 5px 5px 0 var(--orange);
-      transform: rotate(-1deg);
-    }
-
-    .timeline {
-      margin-top: 34px;
-      display: grid;
-      gap: 18px;
-    }
-
-    .timeline-item {
-      background: var(--white);
-      border-left: 10px solid var(--orange);
-      padding: 22px;
-      border-radius: 16px;
-      box-shadow: 0 6px 22px var(--shadow);
-    }
-
-    .timeline-item .date {
-      font-size: 14px;
-      color: var(--muted);
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-    }
-
-    .observation-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 22px;
-      margin-top: 34px;
-    }
-
-    .observation-card {
-      padding: 24px;
-      border-radius: 20px;
-      background: var(--text);
-      color: var(--white);
-    }
-
-    .observation-card span {
-      display: block;
-      color: var(--orange);
-      font-weight: 900;
-      margin-bottom: 12px;
-    }
-
-    .finding {
-      background: var(--blue);
-      color: var(--white);
-    }
-
-    .finding p {
-      color: #e8e8e8;
-    }
-
-    .big-quote {
-      font-size: clamp(34px, 8vw, 86px);
-      line-height: 1.08;
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      max-width: 1050px;
-      margin-top: 24px;
-    }
-
-    .compare-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-top: 34px;
-    }
-
-    /* Photo hotspot section */
-    .photo-map-wrapper {
-      margin-top: 34px;
-      display: grid;
-      gap: 24px;
-    }
-
-    .photo-map {
-      position: relative;
-      max-width: 980px;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 10px 32px var(--shadow);
-      background: #ddd;
-    }
-
-    .hotspot {
-      position: absolute;
-      border: 3px solid var(--orange);
-      background: rgba(242, 165, 26, 0.28);
-      border-radius: 999px;
-      cursor: pointer;
-      transform: translate(-50%, -50%);
-      transition: 0.2s ease;
-      min-width: 44px;
-      min-height: 44px;
-    }
-
-    .hotspot::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 12px;
-      height: 12px;
-      background: var(--orange);
-      border: 2px solid var(--white);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .hotspot:hover,
-    .hotspot:focus {
-      background: rgba(242, 165, 26, 0.56);
-      outline: none;
-    }
-
-    /*
-      사진 위 노란 점 위치.
-      사진에 따라 left/top을 조금 조정하면 됨.
-    */
-    .hotspot.beds {
-      left: 26%;
-      top: 50%;
-      width: 92px;
-      height: 82px;
-    }
-
-    .hotspot.tools {
-      left: 55%;
-      top: 66%;
-      width: 112px;
-      height: 88px;
-    }
-
-    .hotspot.prints {
-      left: 34%;
-      top: 42%;
-      width: 120px;
-      height: 90px;
-    }
-
-    .popup {
-      display: none;
-      position: fixed;
-      left: 50%;
-      bottom: 28px;
-      transform: translateX(-50%);
-      width: min(90vw, 440px);
-      background: var(--white);
-      color: var(--text);
-      padding: 26px;
-      border-radius: 22px;
-      box-shadow: 0 14px 50px rgba(0, 0, 0, 0.28);
-      z-index: 1000;
-    }
-
-    .popup.active {
-      display: block;
-    }
-
-    .popup h3 {
-      padding-right: 36px;
-    }
-
-    .popup p {
-      font-size: 17px;
-      margin: 10px 0 0;
-    }
-
-    .close-popup {
-      position: absolute;
-      right: 18px;
-      top: 14px;
-      border: none;
-      background: transparent;
-      font-size: 30px;
-      cursor: pointer;
-      color: var(--text);
-    }
-
-    /* Recommendation interaction */
-    .label-lab {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-
-    .controls {
-      background: var(--white);
-      padding: 24px;
-      border-radius: 20px;
-      box-shadow: 0 8px 26px var(--shadow);
-    }
-
-    .controls label {
-      display: block;
-      font-weight: 900;
-      margin-bottom: 8px;
-    }
-
-    .controls input {
-      width: 100%;
-      padding: 14px 15px;
-      border: 2px solid var(--text);
-      border-radius: 12px;
-      font-size: 17px;
-      margin-bottom: 18px;
-      background: #fff;
-    }
-
-    .preview-zone {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 26px var(--shadow);
-      background: #ddd;
-    }
-
-    .virtual-sign {
-      position: absolute;
-      left: 8%;
-      bottom: 8%;
-      width: 84%;
-      background: var(--paper);
-      border: 3px solid var(--text);
-      padding: 16px 14px;
-      text-align: center;
-      box-shadow: 7px 7px 0 var(--orange);
-      transform: rotate(-2deg);
-    }
-
-    .virtual-sign .area {
-      font-size: clamp(22px, 7vw, 42px);
-      font-weight: 1000;
-      line-height: 1;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .virtual-sign .belongs,
-    .virtual-sign .action {
-      font-size: clamp(13px, 3.4vw, 18px);
-      color: #3b352e;
-      line-height: 1.25;
-    }
-
-    .virtual-sign .action {
-      margin-top: 6px;
-      font-style: italic;
-    }
-
-    .final {
-      background: var(--text);
-      color: var(--white);
-    }
-
-    .final p {
-      color: #e8e1d6;
-    }
-
-    footer {
-      padding: 42px 7vw;
-      background: #0b0b0b;
-      color: #ddd;
-    }
-
-    footer p {
-      font-size: 15px;
+    .observation-text-box p {
       margin: 0;
+      font-size: 12px;
+      line-height: 1.32;
+      font-weight: 300;
+      letter-spacing: -0.035em;
     }
 
-    @media (min-width: 820px) {
-      .label-lab {
-        grid-template-columns: 0.75fr 1.25fr;
-        align-items: start;
+    .light-box {
+      background: var(--paper);
+      color: var(--text);
+    }
+
+    .dark-box {
+      background: var(--dark-gray);
+      color: var(--white);
+    }
+
+    .dark-box p {
+      color: var(--white);
+    }
+
+    .observation-img {
+      width: 100%;
+      height: 154px;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    .observation-wide-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+    }
+
+    .observation-wide-text {
+      background: var(--paper);
+      color: var(--text);
+      padding: 16px 16px 18px;
+      min-height: 170px;
+    }
+
+    .observation-wide-text h3 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .observation-wide-text p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.28;
+      font-weight: 300;
+      letter-spacing: -0.035em;
+    }
+
+    .observation-wide-img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    /* =========================
+       04 CONCLUSION
+    ========================= */
+
+    .conclusion-section {
+      background: var(--black);
+      color: var(--white);
+      padding: 54px 20px 88px;
+      min-height: 330px;
+    }
+
+    .conclusion-number {
+      text-align: right;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .conclusion-title {
+      margin: 0;
+      font-size: clamp(40px, 10vw, 76px);
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -0.065em;
+    }
+
+    .conclusion-text {
+      margin: 18px 0 0;
+      max-width: 560px;
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 300;
+      letter-spacing: -0.035em;
+      color: #e6e6e6;
+    }
+
+    /* =========================
+       05 VISITOR PARTICIPATION
+    ========================= */
+
+    .participation-section {
+      background: var(--paper);
+      color: var(--text);
+      padding: 14px 10px 0;
+    }
+
+    .participation-number {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .participation-title {
+      margin: 0;
+      font-size: clamp(34px, 9vw, 64px);
+      line-height: 0.92;
+      font-weight: 900;
+      letter-spacing: -0.065em;
+    }
+
+    .participation-intro {
+      margin: 14px 0 10px;
+      font-size: 9.5px;
+      line-height: 1.35;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      max-width: 360px;
+    }
+
+    .arrangement-form {
+      background: var(--gray-card);
+      border-radius: 8px;
+      padding: 10px 12px 12px;
+      margin: 8px 0 18px;
+    }
+
+    .arrangement-form label {
+      display: block;
+      font-size: 7px;
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+
+    .arrangement-form input {
+      width: 100%;
+      height: 20px;
+      border: 1px solid #bcbcbc;
+      border-radius: 2px;
+      background: #f7f7f7;
+      padding: 3px 8px;
+      margin-bottom: 8px;
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      font-size: 8px;
+      font-weight: 300;
+    }
+
+    .arrangement-form input::placeholder {
+      color: #777;
+      text-align: center;
+    }
+
+    .arrangement-form button {
+      display: block;
+      width: 42%;
+      height: 18px;
+      margin: 0 auto;
+      border: none;
+      border-radius: 2px;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      font-size: 7px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .arrangement-form button:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .arrangement-stage {
+      position: relative;
+      width: calc(100% + 20px);
+      margin-left: -10px;
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    .arrangement-stage img {
+      width: 100%;
+      display: block;
+      border-radius: 0;
+    }
+
+    .label-slot {
+      position: absolute;
+      display: none;
+      width: 28%;
+      min-height: 44px;
+      background: rgba(24, 24, 24, 0.88);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 7px 8px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+    }
+
+    .label-slot.active {
+      display: block;
+    }
+
+    .label-slot .label-title {
+      font-size: 8px;
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .label-slot .label-desc {
+      margin-top: 3px;
+      font-size: 6.5px;
+      line-height: 1.15;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+
+    .slot-1 {
+      left: 23%;
+      top: 42%;
+    }
+
+    .slot-2 {
+      left: 51%;
+      top: 39%;
+    }
+
+    .slot-3 {
+      left: 38%;
+      top: 55%;
+    }
+
+    .participation-note {
+      padding: 10px 0 22px;
+      text-align: center;
+      font-size: 9px;
+      font-weight: 300;
+      color: #555;
+    }
+
+    /* =========================
+       DESKTOP ADJUSTMENT
+    ========================= */
+
+    @media (min-width: 760px) {
+      .hero {
+        padding: 84px 72px 64px;
       }
 
-      .photo-map-wrapper {
-        grid-template-columns: 1.3fr 0.7fr;
-        align-items: start;
+      .hero::before {
+        left: -76px;
+        top: 118px;
+        width: 168px;
+        height: 168px;
+      }
+
+      .hero-meta {
+        font-size: 19px;
+      }
+
+      .hero-place {
+        font-size: 20px;
+      }
+
+      .hero-intro {
+        font-size: 16px;
+      }
+
+      .hero-intro strong {
+        font-size: 18px;
+      }
+
+      .before-section,
+      .intervention-section,
+      .observation-section,
+      .conclusion-section,
+      .participation-section {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .before-header,
+      .text-block,
+      .before-bottom-text {
+        padding-left: 36px;
+        padding-right: 36px;
+      }
+
+      .protocol-cards {
+        padding-left: 36px;
+        padding-right: 36px;
+      }
+
+      .intervention-section {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .intervention-title,
+      .intervention-intro,
+      .intervention-header {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .observation-img,
+      .observation-text-box {
+        min-height: 220px;
+      }
+
+      .observation-img {
+        height: 220px;
+      }
+
+      .observation-text-box {
+        padding: 28px 22px;
+      }
+
+      .observation-text-box h3 {
+        font-size: 17px;
+      }
+
+      .observation-text-box p,
+      .observation-intro {
+        font-size: 15px;
+      }
+
+      .observation-wide-text,
+      .observation-wide-img {
+        min-height: 240px;
+      }
+
+      .observation-wide-img {
+        height: 240px;
+      }
+
+      .observation-wide-text {
+        padding: 28px 22px;
+      }
+
+      .observation-wide-text h3 {
+        font-size: 17px;
+      }
+
+      .observation-wide-text p {
+        font-size: 15px;
+      }
+
+      .conclusion-section {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .participation-section {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .participation-intro {
+        font-size: 12px;
+        max-width: 520px;
+      }
+
+      .arrangement-form label {
+        font-size: 8px;
+      }
+
+      .arrangement-form input {
+        height: 26px;
+        font-size: 10px;
+      }
+
+      .arrangement-form button {
+        height: 22px;
+        font-size: 8px;
+      }
+
+      .label-slot {
+        min-height: 58px;
+        padding: 10px 12px;
+      }
+
+      .label-slot .label-title {
+        font-size: 12px;
+      }
+
+      .label-slot .label-desc {
+        font-size: 9px;
       }
     }
   </style>
@@ -454,326 +844,355 @@
 
 <body>
 
+  <!-- 00 HERO -->
   <header class="hero">
-    <div class="hero-tag">DS1(A) Protocol · Gyuri Kim</div>
-    <h1>Arrangement<br>as Instruction</h1>
-    <p>
-      A shelf is not just storage. A box is not just a container.
-      Together, they quietly tell people what to do.
-    </p>
-    <div class="bottom-note">N25 3D Printing Room</div>
+    <div class="hero-meta">
+      20230060 Gyuri Kim<br>
+      DS1(A) Project 3 : Protocol
+    </div>
+
+    <h1 class="hero-title">
+      Arrangement as<br>
+      Instruction
+    </h1>
+
+    <div class="hero-place">
+      N25 1F, 3D Printing Room
+    </div>
+
+    <div class="hero-intro">
+      <strong>Where do things go when no one tells you?</strong>
+      This project begins with a small disorder in the N25 3D printing room:
+      tools, beds, scraps, and finished prints sharing the same space.
+      By rearranging shelves, boxes, and labels, the room was given clearer
+      territories—and a quieter way to guide behavior.
+    </div>
   </header>
 
-  <section>
-    <div class="section-label">01 / Site Protocol</div>
-    <h2>The Room Already Had a Protocol</h2>
-    <p>
+  <!-- 01 BEFORE -->
+  <section class="before-section">
+    <div class="before-header">
+      <div class="section-number">01 BEFORE</div>
+
+      <div class="before-heading-wrap">
+        <h2 class="before-title">
+          Implicit Protocol
+        </h2>
+        <div class="before-title-small">
+          on the site
+        </div>
+      </div>
+    </div>
+
+    <img
+      class="before-main-image"
+      src="images/before.jpg"
+      alt="Before state of the 3D printing room"
+    >
+
+    <div class="caption">Before</div>
+
+    <p class="text-block">
       In the N25 3D printing room, the use of each box was mostly fixed.
       There were clean beds for printing, tools for removing prints, and a place
       for finished prints. However, before the intervention, these territories were
       not clearly separated enough.
     </p>
 
-    <div class="grid">
-      <div class="card">
-        <div class="tag">CLEAN BEDS</div>
-        <p>Clean printer beds for starting a new print.</p>
+    <div class="protocol-cards">
+      <div class="protocol-card">
+        <h3>Cleaned Beds</h3>
+        <p>
+          3D Printer Beds were left here before and after the print.
+        </p>
       </div>
 
-      <div class="card">
-        <div class="tag">TOOLS</div>
-        <p>Scrapers, hammers, and tools for removing prints from the bed.</p>
+      <div class="protocol-card">
+        <h3>Tools</h3>
+        <p>
+          Scrapers, hammers, and tools for removing prints from the bed.
+        </p>
       </div>
 
-      <div class="card">
-        <div class="tag">FINISHED PRINTS</div>
-        <p>Temporary storage for prints removed by someone else.</p>
+      <div class="protocol-card">
+        <h3>Finished Prints</h3>
+        <p>
+          Temporary storage for prints removed by someone else.
+        </p>
       </div>
     </div>
-  </section>
 
-  <section>
-    <div class="section-label">02 / Before</div>
-    <h2>Mixed Territory</h2>
-    <p>
+    <div class="problems-title">Problems?</div>
+
+    <div class="problem-image-wrap">
+      <img src="images/Problems.jpg" alt="Problems in the 3D printing room">
+    </div>
+
+    <p class="before-bottom-text">
       Before the intervention, tools, small prints, support scraps, and printer beds
       shared the same visual field. The problem was not simply that the room was messy.
       The problem was that the boundaries between different actions were weak.
     </p>
+  </section>
 
-    <div class="grid">
-      <div class="card">
-        <img src="images/before.jpg" alt="Before intervention in the 3D printing room">
-        <h3>Before</h3>
-        <p>
-          The room had containers, but the territories were not clear enough.
-        </p>
-      </div>
+  <!-- 02 INTERVENTION -->
+  <section class="intervention-section">
+    <div class="intervention-topline"></div>
 
-      <div class="card">
-        <img src="images/prototype.jpg" alt="Prototype with shelf and labels">
-        <h3>Prototype</h3>
-        <p>
-          I first tested whether a small shelf and simple labels could change where objects were placed.
-        </p>
-      </div>
+    <div class="intervention-header">
+      <div></div>
+      <div class="intervention-number">02&nbsp;&nbsp;INTERVENTION</div>
+    </div>
+
+    <h2 class="intervention-title">
+      MAKING<br>
+      TERRITORIES
+    </h2>
+
+    <p class="intervention-intro">
+      I rearranged the space by adding a small shelf, separating containers, and
+      later adding labels. The goal was not to create a completely new rule, but
+      to make the existing categories physically and visually separate.
+    </p>
+
+    <div class="intervention-card">
+      <div class="card-label">P R O T O T Y P E</div>
+      <h3>Temporary shelf + simple name tags</h3>
+      <p>
+        The first prototype made the room easier to read. Fewer support scraps
+        and random parts were placed in the tool box. However, the shelf was too
+        small, and small prints could fall through the gap.
+      </p>
+
+      <details class="picture-toggle">
+        <summary>P I C T U R E S</summary>
+        <img src="images/prototype.jpg" alt="Prototype photo group">
+      </details>
+    </div>
+
+    <div class="intervention-card">
+      <div class="card-label">F I R S T&nbsp;&nbsp;I N S T A L L A T I O N</div>
+      <h3>Custom shelf made with basket and tension rods</h3>
+      <p>
+        After the purchased shelf did not fit the space, I made a new shelf using
+        a storage basket and tension rods. Even without name tags, the rough
+        division between tools, beds, and prints seemed to remain.
+      </p>
+
+      <details class="picture-toggle">
+        <summary>P I C T U R E S</summary>
+        <img src="images/first-installation.jpg" alt="First installation photo group">
+      </details>
+    </div>
+
+    <div class="intervention-card">
+      <div class="card-label">F U R T H E R&nbsp;&nbsp;C H A N G E S</div>
+      <h3>Labels + board marker</h3>
+      <p>
+        I added editable labels and placed a board marker nearby. However, no one
+        tried to rewrite the labels. I realized that the intervention did not
+        clearly invite participation yet.
+      </p>
+
+      <details class="picture-toggle">
+        <summary>P I C T U R E S</summary>
+        <img src="images/further.jpg" alt="Further changes photo group">
+      </details>
     </div>
   </section>
 
-  <section>
-    <div class="section-label">03 / Intervention</div>
-    <h2>Making Territories</h2>
-    <p>
-      I rearranged the space by adding a small shelf, separating containers, and later
-      adding labels. The goal was not to create a completely new rule, but to make the
-      existing categories physically and visually separate.
+  <!-- 03 OBSERVATION -->
+  <section class="observation-section">
+    <div class="observation-topline"></div>
+
+    <div class="observation-number">03 OBSERVATION</div>
+
+    <h2 class="observation-title">
+      WHAT CHANGED?
+    </h2>
+
+    <p class="observation-intro">
+      The intervention showed that arrangement can change behavior, but only
+      up to a point. It guided where people placed objects, but it could not
+      completely change what people felt allowed to touch.
     </p>
 
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="date">Prototype</div>
-        <h3>Temporary shelf + simple name tags</h3>
+    <div class="observation-grid-figma">
+      <div class="observation-text-box light-box">
+        <h3>Separation of territories worked quite well.</h3>
         <p>
-          The first prototype made the room easier to read. Fewer support scraps and
-          random parts were placed in the tool box. However, the shelf was too small,
-          and small prints could fall through the gap.
+          Once the space was divided, the rough separation between tools,
+          beds, and prints seemed to remain even before clear name tags were
+          added.
         </p>
       </div>
 
-      <div class="timeline-item">
-        <div class="date">First Installation</div>
-        <h3>Custom shelf made with basket and tension rods</h3>
-        <p>
-          After the purchased shelf did not fit the space, I made a new shelf using
-          a storage basket and tension rods. Even without name tags, the rough division
-          between tools, beds, and prints seemed to remain.
-        </p>
-      </div>
+      <img
+        class="observation-img"
+        src="images/observation-1.jpg"
+        alt="User using the 3D printing room after the intervention"
+      >
 
-      <div class="timeline-item">
-        <div class="date">Name Tags Added</div>
-        <h3>Labels + board marker</h3>
-        <p>
-          Following the critique, I added editable labels and placed a board marker nearby.
-          However, no one tried to rewrite the labels. I realized that the intervention
-          did not clearly invite participation yet.
-        </p>
-      </div>
-    </div>
-  </section>
+      <img
+        class="observation-img"
+        src="images/observation-2.jpg"
+        alt="Separated boxes and shelf after the intervention"
+      >
 
-  <section>
-    <div class="section-label">04 / Observation</div>
-    <h2>What Changed?</h2>
-    <p>
-      The intervention showed that arrangement can change behavior, but only up to a point.
-      It guided where people placed objects, but it could not completely change what people
-      felt allowed to touch.
-    </p>
-
-    <div class="observation-grid">
-      <div class="observation-card">
-        <span>Observation 1</span>
-        <h3>The tool box became cleaner.</h3>
-        <p>
-          After the prototype, fewer support scraps and small parts were placed in the tool box.
-        </p>
-      </div>
-
-      <div class="observation-card">
-        <span>Observation 2</span>
-        <h3>Separation worked even before labels.</h3>
-        <p>
-          Once the space was divided, the rough separation between tools, beds, and prints
-          seemed to remain even before clear name tags were added.
-        </p>
-      </div>
-
-      <div class="observation-card">
-        <span>Observation 3</span>
+      <div class="observation-text-box dark-box">
         <h3>Some boundaries were social, not spatial.</h3>
         <p>
           People still tended to leave other people’s prints attached to the bed.
-          A shelf can suggest where finished prints should go, but it cannot fully remove
-          the hesitation of touching someone else’s fragile work.
+          A shelf can suggest where finished prints should go, but it cannot
+          fully remove the hesitation of touching someone else’s fragile work.
         </p>
       </div>
     </div>
 
-    <div class="compare-grid">
-      <div class="card">
-        <img src="images/no-tags.jpg" alt="First installation without tags">
-        <h3>Without Tags</h3>
+    <div class="observation-wide-row">
+      <div class="observation-wide-text">
+        <h3>Pre-existing protocols were too strong.</h3>
         <p>
-          The physical separation already began to guide behavior.
+          An attempt was made to allow users to arbitrarily change the
+          configuration of each space, but the pre-existing protocol that was
+          previously used and that was created through my organization was too
+          powerful. The students did not bother to reorganize the space by
+          rearranging what had been organized.
         </p>
       </div>
 
-      <div class="card">
-        <img src="images/with-tags.jpg" alt="Installation with tags">
-        <h3>With Tags</h3>
-        <p>
-          Labels made the territories more readable, but participation still needed invitation.
-        </p>
-      </div>
+      <img
+        class="observation-wide-img"
+        src="images/observation-3.jpg"
+        alt="Editable label on the finished prints basket"
+      >
     </div>
   </section>
 
-  <section class="finding">
-    <div class="section-label">05 / Finding</div>
-    <h2>Space Can Suggest, But Not Force</h2>
-    <p>
-      The arrangement guided small actions: where to put tools, where to return beds,
-      and where not to place scraps. But it also revealed a limit. Spatial boundaries
-      can make behavior easier, but they do not automatically solve social hesitation.
-    </p>
+  <!-- 04 CONCLUSION -->
+  <section class="conclusion-section">
+    <div class="conclusion-number">04 CONCLUSION</div>
 
-    <div class="big-quote">
-      I did not tell people what to do. I rearranged the space and watched what changed.
-    </div>
-  </section>
+    <h2 class="conclusion-title">
+      Space Can Suggest,<br>
+      But Not Force
+    </h2>
 
-  <section>
-    <div class="section-label">06 / Tap the Space</div>
-    <h2>Read the Hidden Instructions</h2>
-    <p>
-      Each area quietly suggests a different action. Tap the boxes in the image to read
-      what the arrangement is asking users to do.
-    </p>
-
-    <div class="photo-map-wrapper">
-      <div class="photo-map">
-        <img src="images/with-tags.jpg" alt="3D printing room with labeled territories">
-
-        <button class="hotspot beds" onclick="openPopup('beds')" aria-label="Clean beds area"></button>
-        <button class="hotspot tools" onclick="openPopup('tools')" aria-label="Tools area"></button>
-        <button class="hotspot prints" onclick="openPopup('prints')" aria-label="Finished prints area"></button>
-      </div>
-
-      <div class="card">
-        <h3>What does the webpage add?</h3>
-        <p>
-          In the room, the arrangement is physical. On this page, the same arrangement
-          becomes readable. Visitors can see that the project is not only about cleaning,
-          but about how spatial configuration guides behavior.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-label">07 / Visitor Participation</div>
-    <h2>Recommend a Better Arrangement</h2>
-    <p>
-      My arrangement changed some behaviors, but not all of them. If you use this room,
-      you may know better than I do: what kind of area, label, or container would make
-      the protocol clearer?
-    </p>
-
-    <div class="label-lab">
-      <div class="controls">
-        <label for="areaInput">Area name</label>
-        <input id="areaInput" type="text" maxlength="28" placeholder="e.g. FRAGILE PRINTS">
-
-        <label for="belongsInput">What should go here?</label>
-        <input id="belongsInput" type="text" maxlength="48" placeholder="e.g. prints that should not be touched">
-
-        <label for="actionInput">What action should this area suggest?</label>
-        <input id="actionInput" type="text" maxlength="58" placeholder="e.g. ask the owner before removing">
-      </div>
-
-      <div class="preview-zone">
-        <img src="images/advanced.jpg" alt="Preview of a box with a user-generated label">
-
-        <div class="virtual-sign">
-          <div class="area" id="areaPreview">FRAGILE PRINTS</div>
-          <div class="belongs" id="belongsPreview">prints that should not be touched</div>
-          <div class="action" id="actionPreview">ask the owner before removing</div>
-        </div>
-      </div>
-    </div>
-
-    <p class="small" style="margin-top: 24px;">
-      This interaction does not save or share your input. It only lets you test how a new label
-      could change the way this space is read.
+    <p class="conclusion-text">
+      The arrangement guided small actions: where to put tools, where to return
+      beds, and where not to place scraps. But it also revealed a limit. Spatial
+      boundaries can make behavior easier, but they do not automatically solve
+      social hesitation.
     </p>
   </section>
 
-  <section class="final">
-    <div class="section-label">08 / Reflection</div>
-    <h2>Arrangement as Instruction</h2>
-    <p>
-      This project is not simply about organizing a room. It asks how much behavior can be guided
-      by the configuration of space.
+  <!-- 05 VISITOR PARTICIPATION -->
+  <section class="participation-section">
+    <div class="participation-number">05 VISITOR PARTICIPATION</div>
+
+    <h2 class="participation-title">
+      Some Better<br>
+      Arrangements?
+    </h2>
+
+    <p class="participation-intro">
+      My arrangement changed some behaviors, but not all of them. If you use this
+      room, you may know better than I do: what kind of area, label, or container
+      would make the protocol clearer?
     </p>
 
-    <div class="big-quote">
-      A shelf is not just storage.<br>
-      A box is not just a container.<br>
-      A label is not just a name.<br>
-      Together, they become a quiet instruction.
+    <form class="arrangement-form" id="arrangementForm">
+      <label for="areaName">A R E A&nbsp;&nbsp; N A M E</label>
+      <input
+        id="areaName"
+        type="text"
+        maxlength="24"
+        placeholder="e.g Fragile prints"
+      >
+
+      <label for="areaExplanation">E X P L A N A T I O N S</label>
+      <input
+        id="areaExplanation"
+        type="text"
+        maxlength="70"
+        placeholder="e.g What should be in there? Why?"
+      >
+
+      <button type="submit" id="addArrangement">ADD</button>
+    </form>
+
+    <div class="arrangement-stage">
+      <img src="images/blank.jpg" alt="Blank 3D printing room surface">
+
+      <div class="label-slot slot-1" id="slot1"></div>
+      <div class="label-slot slot-2" id="slot2"></div>
+      <div class="label-slot slot-3" id="slot3"></div>
     </div>
+
+    <p class="participation-note" id="participationNote">
+      Add up to three suggested arrangements.
+    </p>
   </section>
-
-  <footer>
-    <p>Gyuri Kim · DS1(A) Protocol · N25 3D Printing Room</p>
-  </footer>
-
-  <div id="popup" class="popup">
-    <button class="close-popup" onclick="closePopup()" aria-label="Close popup">×</button>
-    <h3 id="popupTitle"></h3>
-    <p id="popupText"></p>
-  </div>
 
   <script>
-    const protocolData = {
-      beds: {
-        title: "CLEAN BEDS",
-        text: "Take one when you start printing. Return only clean printer beds here."
-      },
-      tools: {
-        title: "TOOLS",
-        text: "Use these to remove prints. Return them here. Do not use this box as a dumping area."
-      },
-      prints: {
-        title: "FINISHED PRINTS",
-        text: "A place for prints that have been removed. But the harder question is: who feels allowed to remove them?"
+    const arrangementForm = document.getElementById("arrangementForm");
+    const areaNameInput = document.getElementById("areaName");
+    const areaExplanationInput = document.getElementById("areaExplanation");
+    const addArrangementButton = document.getElementById("addArrangement");
+    const participationNote = document.getElementById("participationNote");
+
+    const slots = [
+      document.getElementById("slot1"),
+      document.getElementById("slot2"),
+      document.getElementById("slot3")
+    ];
+
+    let arrangementCount = 0;
+
+    function fillSlot(slot, areaName, explanation) {
+      slot.textContent = "";
+
+      const title = document.createElement("div");
+      title.className = "label-title";
+      title.textContent = areaName || "Unnamed Area";
+
+      const desc = document.createElement("div");
+      desc.className = "label-desc";
+      desc.textContent = explanation || "No explanation added.";
+
+      slot.appendChild(title);
+      slot.appendChild(desc);
+      slot.classList.add("active");
+    }
+
+    arrangementForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const areaName = areaNameInput.value.trim();
+      const explanation = areaExplanationInput.value.trim();
+
+      if (!areaName && !explanation) {
+        participationNote.textContent = "Type an area name or an explanation first.";
+        return;
       }
-    };
 
-    function openPopup(type) {
-      document.getElementById("popupTitle").textContent = protocolData[type].title;
-      document.getElementById("popupText").textContent = protocolData[type].text;
-      document.getElementById("popup").classList.add("active");
-    }
+      if (arrangementCount >= 3) {
+        participationNote.textContent = "You have already added three suggested arrangements.";
+        return;
+      }
 
-    function closePopup() {
-      document.getElementById("popup").classList.remove("active");
-    }
+      fillSlot(slots[arrangementCount], areaName, explanation);
 
-    const areaInput = document.getElementById("areaInput");
-    const belongsInput = document.getElementById("belongsInput");
-    const actionInput = document.getElementById("actionInput");
+      arrangementCount += 1;
 
-    const areaPreview = document.getElementById("areaPreview");
-    const belongsPreview = document.getElementById("belongsPreview");
-    const actionPreview = document.getElementById("actionPreview");
+      areaNameInput.value = "";
+      areaExplanationInput.value = "";
 
-    areaInput.addEventListener("input", function () {
-      areaPreview.textContent = areaInput.value || "FRAGILE PRINTS";
-    });
-
-    belongsInput.addEventListener("input", function () {
-      belongsPreview.textContent = belongsInput.value || "prints that should not be touched";
-    });
-
-    actionInput.addEventListener("input", function () {
-      actionPreview.textContent = actionInput.value || "ask the owner before removing";
-    });
-
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") {
-        closePopup();
+      if (arrangementCount === 3) {
+        addArrangementButton.disabled = true;
+        participationNote.textContent = "Three suggestions added. The space is now full.";
+      } else {
+        participationNote.textContent = `${3 - arrangementCount} more suggestion(s) can be added.`;
       }
     });
   </script>
