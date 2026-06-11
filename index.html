@@ -3,21 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Box Is Not Enough</title>
+
+  <title>Arrangement as Instruction</title>
 
   <style>
     :root {
-      --bg: #f7f6f2;
-      --text: #1f1f1f;
-      --muted: #666;
-      --orange: #f2a51a;
-      --blue: #243b7a;
-      --paper: #fff7d6;
+      --bg: #f7f3ea;
+      --text: #171717;
+      --muted: #6b6257;
       --white: #ffffff;
+      --orange: #f2a51a;
+      --orange-dark: #d28700;
+      --blue: #263b77;
+      --paper: #fff3c4;
+      --line: #d8d0c4;
+      --shadow: rgba(0, 0, 0, 0.12);
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -28,308 +36,682 @@
       line-height: 1.6;
     }
 
-    header {
+    img {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+    }
+
+    section {
+      padding: 84px 7vw;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange-dark);
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    h1 {
+      font-size: clamp(56px, 16vw, 130px);
+    }
+
+    h2 {
+      font-size: clamp(36px, 8vw, 72px);
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      max-width: 780px;
+      font-size: 18px;
+      margin: 0 0 22px;
+    }
+
+    .small {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .hero {
       min-height: 100vh;
       padding: 48px 7vw;
       display: flex;
       flex-direction: column;
       justify-content: center;
       background: var(--text);
-      color: white;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
     }
 
-    header .label {
-      width: fit-content;
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      bottom: -80px;
+      width: 260px;
+      height: 260px;
       background: var(--orange);
+      border-radius: 50%;
+      opacity: 0.9;
+    }
+
+    .hero-tag {
+      width: fit-content;
+      background: var(--paper);
       color: var(--text);
-      padding: 8px 14px;
-      font-weight: bold;
-      margin-bottom: 28px;
+      padding: 10px 16px;
+      font-weight: 900;
+      margin-bottom: 32px;
+      box-shadow: 6px 6px 0 var(--orange);
       transform: rotate(-2deg);
+      z-index: 1;
     }
 
-    h1 {
-      font-size: clamp(48px, 10vw, 110px);
-      line-height: 0.95;
-      margin: 0;
-      letter-spacing: -3px;
-    }
-
-    header p {
-      font-size: clamp(20px, 3vw, 30px);
-      max-width: 800px;
-      color: #ddd;
+    .hero p {
+      font-size: clamp(21px, 5vw, 34px);
+      color: #e8e1d6;
       margin-top: 28px;
+      z-index: 1;
     }
 
-    section {
-      padding: 80px 7vw;
-      border-bottom: 1px solid #ddd;
+    .hero .bottom-note {
+      margin-top: 60px;
+      font-size: 15px;
+      color: #bbb;
+      z-index: 1;
     }
 
-    h2 {
-      font-size: clamp(32px, 5vw, 56px);
-      line-height: 1.05;
-      margin: 0 0 24px 0;
-      letter-spacing: -1px;
-    }
-
-    p {
-      max-width: 760px;
-      font-size: 18px;
-      margin-bottom: 24px;
-    }
-
-    .small-title {
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    .hero-grid,
-    .image-grid,
-    .protocol-grid {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-top: 32px;
-    }
-
-    img {
-      width: 100%;
-      display: block;
-      border-radius: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      margin-top: 34px;
     }
 
     .card {
       background: var(--white);
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      padding: 22px;
+      border-radius: 20px;
+      box-shadow: 0 8px 26px var(--shadow);
     }
 
-    .card h3 {
-      margin: 14px 0 8px 0;
-      font-size: 22px;
-    }
-
-    .card p {
-      font-size: 16px;
-      margin: 0;
-      color: #444;
-    }
-
-    .comparison {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
-      margin-top: 32px;
+    .card img {
+      margin-bottom: 18px;
     }
 
     .tag {
       display: inline-block;
       background: var(--paper);
       border: 2px solid var(--text);
-      padding: 10px 16px;
-      font-weight: bold;
-      margin-bottom: 12px;
-      box-shadow: 4px 4px 0 var(--orange);
+      padding: 10px 14px;
+      font-weight: 900;
+      margin-bottom: 14px;
+      box-shadow: 5px 5px 0 var(--orange);
+      transform: rotate(-1deg);
     }
 
-    .protocol-button {
-      width: 100%;
-      text-align: left;
-      border: 2px solid var(--text);
+    .timeline {
+      margin-top: 34px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
       background: var(--white);
-      padding: 18px;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 12px;
+      border-left: 10px solid var(--orange);
+      padding: 22px;
+      border-radius: 16px;
+      box-shadow: 0 6px 22px var(--shadow);
+    }
+
+    .timeline-item .date {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .observation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+      margin-top: 34px;
+    }
+
+    .observation-card {
+      padding: 24px;
+      border-radius: 20px;
+      background: var(--text);
+      color: var(--white);
+    }
+
+    .observation-card span {
+      display: block;
+      color: var(--orange);
+      font-weight: 900;
       margin-bottom: 12px;
     }
 
-    .protocol-button:hover {
-      background: var(--paper);
+    .finding {
+      background: var(--blue);
+      color: var(--white);
     }
 
-    .protocol-text {
+    .finding p {
+      color: #e8e8e8;
+    }
+
+    .big-quote {
+      font-size: clamp(34px, 8vw, 86px);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      max-width: 1050px;
+      margin-top: 24px;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 34px;
+    }
+
+    /* Photo hotspot section */
+    .photo-map-wrapper {
+      margin-top: 34px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .photo-map {
+      position: relative;
+      max-width: 980px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 32px var(--shadow);
+      background: #ddd;
+    }
+
+    .hotspot {
+      position: absolute;
+      border: 3px solid var(--orange);
+      background: rgba(242, 165, 26, 0.28);
+      border-radius: 999px;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      transition: 0.2s ease;
+      min-width: 44px;
+      min-height: 44px;
+    }
+
+    .hotspot::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      background: var(--orange);
+      border: 2px solid var(--white);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hotspot:hover,
+    .hotspot:focus {
+      background: rgba(242, 165, 26, 0.56);
+      outline: none;
+    }
+
+    /*
+      사진 위 노란 점 위치.
+      사진에 따라 left/top을 조금 조정하면 됨.
+    */
+    .hotspot.beds {
+      left: 26%;
+      top: 50%;
+      width: 92px;
+      height: 82px;
+    }
+
+    .hotspot.tools {
+      left: 55%;
+      top: 66%;
+      width: 112px;
+      height: 88px;
+    }
+
+    .hotspot.prints {
+      left: 34%;
+      top: 42%;
+      width: 120px;
+      height: 90px;
+    }
+
+    .popup {
       display: none;
-      background: var(--paper);
-      border-left: 8px solid var(--orange);
-      padding: 18px;
-      border-radius: 8px;
-      font-size: 17px;
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      width: min(90vw, 440px);
+      background: var(--white);
+      color: var(--text);
+      padding: 26px;
+      border-radius: 22px;
+      box-shadow: 0 14px 50px rgba(0, 0, 0, 0.28);
+      z-index: 1000;
     }
 
-    .protocol-text.active {
+    .popup.active {
       display: block;
     }
 
-    .quote-section {
-      background: var(--blue);
-      color: white;
+    .popup h3 {
+      padding-right: 36px;
     }
 
-    .quote {
-      font-size: clamp(34px, 6vw, 72px);
-      line-height: 1.1;
-      font-weight: bold;
-      max-width: 1000px;
-      letter-spacing: -2px;
+    .popup p {
+      font-size: 17px;
+      margin: 10px 0 0;
+    }
+
+    .close-popup {
+      position: absolute;
+      right: 18px;
+      top: 14px;
+      border: none;
+      background: transparent;
+      font-size: 30px;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    /* Recommendation interaction */
+    .label-lab {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .controls {
+      background: var(--white);
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: 0 8px 26px var(--shadow);
+    }
+
+    .controls label {
+      display: block;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .controls input {
+      width: 100%;
+      padding: 14px 15px;
+      border: 2px solid var(--text);
+      border-radius: 12px;
+      font-size: 17px;
+      margin-bottom: 18px;
+      background: #fff;
+    }
+
+    .preview-zone {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 26px var(--shadow);
+      background: #ddd;
+    }
+
+    .virtual-sign {
+      position: absolute;
+      left: 8%;
+      bottom: 8%;
+      width: 84%;
+      background: var(--paper);
+      border: 3px solid var(--text);
+      padding: 16px 14px;
+      text-align: center;
+      box-shadow: 7px 7px 0 var(--orange);
+      transform: rotate(-2deg);
+    }
+
+    .virtual-sign .area {
+      font-size: clamp(22px, 7vw, 42px);
+      font-weight: 1000;
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .virtual-sign .belongs,
+    .virtual-sign .action {
+      font-size: clamp(13px, 3.4vw, 18px);
+      color: #3b352e;
+      line-height: 1.25;
+    }
+
+    .virtual-sign .action {
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    .final {
+      background: var(--text);
+      color: var(--white);
+    }
+
+    .final p {
+      color: #e8e1d6;
     }
 
     footer {
-      padding: 48px 7vw;
-      background: var(--text);
-      color: white;
-      font-size: 16px;
+      padding: 42px 7vw;
+      background: #0b0b0b;
+      color: #ddd;
     }
 
     footer p {
+      font-size: 15px;
       margin: 0;
-      color: #ddd;
+    }
+
+    @media (min-width: 820px) {
+      .label-lab {
+        grid-template-columns: 0.75fr 1.25fr;
+        align-items: start;
+      }
+
+      .photo-map-wrapper {
+        grid-template-columns: 1.3fr 0.7fr;
+        align-items: start;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="label">DS1(A) Protocol</div>
-    <h1>A Box Is<br>Not Enough</h1>
-    <p>A box needs to tell users what belongs there.</p>
+  <header class="hero">
+    <div class="hero-tag">DS1(A) Protocol · Gyuri Kim</div>
+    <h1>Arrangement<br>as Instruction</h1>
+    <p>
+      A shelf is not just storage. A box is not just a container.
+      Together, they quietly tell people what to do.
+    </p>
+    <div class="bottom-note">N25 3D Printing Room</div>
   </header>
 
   <section>
-    <div class="small-title">Site</div>
-    <h2>N25 3D Printing Room</h2>
+    <div class="section-label">01 / Site Protocol</div>
+    <h2>The Room Already Had a Protocol</h2>
     <p>
-      The 3D printing room already had boxes. The room also had a clear protocol:
-      clean printer beds, tools for removing prints, and finished prints temporarily
-      left by other users. However, this protocol was not clearly visible.
+      In the N25 3D printing room, the use of each box was mostly fixed.
+      There were clean beds for printing, tools for removing prints, and a place
+      for finished prints. However, before the intervention, these territories were
+      not clearly separated enough.
     </p>
 
-    <div class="protocol-grid">
+    <div class="grid">
       <div class="card">
         <div class="tag">CLEAN BEDS</div>
-        <p>Clean printer beds used before starting a new print.</p>
+        <p>Clean printer beds for starting a new print.</p>
       </div>
+
       <div class="card">
         <div class="tag">TOOLS</div>
         <p>Scrapers, hammers, and tools for removing prints from the bed.</p>
       </div>
+
       <div class="card">
         <div class="tag">FINISHED PRINTS</div>
-        <p>Temporary storage for prints that have been removed by someone else.</p>
+        <p>Temporary storage for prints removed by someone else.</p>
       </div>
     </div>
   </section>
 
   <section>
-    <div class="small-title">Before</div>
-    <h2>Containers Without Protocol</h2>
+    <div class="section-label">02 / Before</div>
+    <h2>Mixed Territory</h2>
     <p>
-      Before the intervention, people placed objects wherever there was space.
-      Tools, printer beds, support pieces, and finished prints shared the same visual field.
-      The problem was not the lack of storage. The problem was that the boxes did not
-      clearly communicate what action should happen there.
+      Before the intervention, tools, small prints, support scraps, and printer beds
+      shared the same visual field. The problem was not simply that the room was messy.
+      The problem was that the boundaries between different actions were weak.
     </p>
 
-    <div class="image-grid">
+    <div class="grid">
       <div class="card">
-        <img src="images/before.jpg" alt="Before intervention">
+        <img src="images/before.jpg" alt="Before intervention in the 3D printing room">
         <h3>Before</h3>
-        <p>The containers existed, but their roles were not visible enough.</p>
+        <p>
+          The room had containers, but the territories were not clear enough.
+        </p>
       </div>
+
       <div class="card">
-        <img src="images/prototype.jpg" alt="Prototype labels">
+        <img src="images/prototype.jpg" alt="Prototype with shelf and labels">
         <h3>Prototype</h3>
-        <p>Temporary name tags began to make the system readable.</p>
+        <p>
+          I first tested whether a small shelf and simple labels could change where objects were placed.
+        </p>
       </div>
     </div>
   </section>
 
   <section>
-    <div class="small-title">Prototype</div>
-    <h2>A Name Is Not Yet a Rule</h2>
+    <div class="section-label">03 / Intervention</div>
+    <h2>Making Territories</h2>
     <p>
-      For the prototype, I added simple name tags such as Tools, Bed, and Printings.
-      It partially worked. People placed fewer random objects in the tool box, and the
-      space became easier to read. However, the prototype also showed that a label should
-      do more than name a box. It should guide behavior.
+      I rearranged the space by adding a small shelf, separating containers, and later
+      adding labels. The goal was not to create a completely new rule, but to make the
+      existing categories physically and visually separate.
     </p>
 
-    <div class="comparison">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="date">Prototype</div>
+        <h3>Temporary shelf + simple name tags</h3>
+        <p>
+          The first prototype made the room easier to read. Fewer support scraps and
+          random parts were placed in the tool box. However, the shelf was too small,
+          and small prints could fall through the gap.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="date">First Installation</div>
+        <h3>Custom shelf made with basket and tension rods</h3>
+        <p>
+          After the purchased shelf did not fit the space, I made a new shelf using
+          a storage basket and tension rods. Even without name tags, the rough division
+          between tools, beds, and prints seemed to remain.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="date">Name Tags Added</div>
+        <h3>Labels + board marker</h3>
+        <p>
+          Following the critique, I added editable labels and placed a board marker nearby.
+          However, no one tried to rewrite the labels. I realized that the intervention
+          did not clearly invite participation yet.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">04 / Observation</div>
+    <h2>What Changed?</h2>
+    <p>
+      The intervention showed that arrangement can change behavior, but only up to a point.
+      It guided where people placed objects, but it could not completely change what people
+      felt allowed to touch.
+    </p>
+
+    <div class="observation-grid">
+      <div class="observation-card">
+        <span>Observation 1</span>
+        <h3>The tool box became cleaner.</h3>
+        <p>
+          After the prototype, fewer support scraps and small parts were placed in the tool box.
+        </p>
+      </div>
+
+      <div class="observation-card">
+        <span>Observation 2</span>
+        <h3>Separation worked even before labels.</h3>
+        <p>
+          Once the space was divided, the rough separation between tools, beds, and prints
+          seemed to remain even before clear name tags were added.
+        </p>
+      </div>
+
+      <div class="observation-card">
+        <span>Observation 3</span>
+        <h3>Some boundaries were social, not spatial.</h3>
+        <p>
+          People still tended to leave other people’s prints attached to the bed.
+          A shelf can suggest where finished prints should go, but it cannot fully remove
+          the hesitation of touching someone else’s fragile work.
+        </p>
+      </div>
+    </div>
+
+    <div class="compare-grid">
       <div class="card">
-        <img src="images/no-tags.jpg" alt="No tags setup">
+        <img src="images/no-tags.jpg" alt="First installation without tags">
         <h3>Without Tags</h3>
-        <p>The space looked cleaner, but the rule was still ambiguous.</p>
+        <p>
+          The physical separation already began to guide behavior.
+        </p>
       </div>
+
       <div class="card">
-        <img src="images/with-tags.jpg" alt="With tags setup">
+        <img src="images/with-tags.jpg" alt="Installation with tags">
         <h3>With Tags</h3>
-        <p>The boxes began to tell users what belongs there.</p>
+        <p>
+          Labels made the territories more readable, but participation still needed invitation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="finding">
+    <div class="section-label">05 / Finding</div>
+    <h2>Space Can Suggest, But Not Force</h2>
+    <p>
+      The arrangement guided small actions: where to put tools, where to return beds,
+      and where not to place scraps. But it also revealed a limit. Spatial boundaries
+      can make behavior easier, but they do not automatically solve social hesitation.
+    </p>
+
+    <div class="big-quote">
+      I did not tell people what to do. I rearranged the space and watched what changed.
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">06 / Tap the Space</div>
+    <h2>Read the Hidden Instructions</h2>
+    <p>
+      Each area quietly suggests a different action. Tap the boxes in the image to read
+      what the arrangement is asking users to do.
+    </p>
+
+    <div class="photo-map-wrapper">
+      <div class="photo-map">
+        <img src="images/with-tags.jpg" alt="3D printing room with labeled territories">
+
+        <button class="hotspot beds" onclick="openPopup('beds')" aria-label="Clean beds area"></button>
+        <button class="hotspot tools" onclick="openPopup('tools')" aria-label="Tools area"></button>
+        <button class="hotspot prints" onclick="openPopup('prints')" aria-label="Finished prints area"></button>
+      </div>
+
+      <div class="card">
+        <h3>What does the webpage add?</h3>
+        <p>
+          In the room, the arrangement is physical. On this page, the same arrangement
+          becomes readable. Visitors can see that the project is not only about cleaning,
+          but about how spatial configuration guides behavior.
+        </p>
       </div>
     </div>
   </section>
 
   <section>
-    <div class="small-title">Final Intervention</div>
-    <h2>Protocol Labels</h2>
+    <div class="section-label">07 / Visitor Participation</div>
+    <h2>Recommend a Better Arrangement</h2>
     <p>
-      After the critique, I revised the intervention from simple name tags into protocol labels.
-      The categories remain fixed: clean beds, tools, and finished prints. The labels make these
-      fixed rules visible. For the finished prints box, I added a writable area so users can leave
-      temporary information such as names, dates, or notes.
+      My arrangement changed some behaviors, but not all of them. If you use this room,
+      you may know better than I do: what kind of area, label, or container would make
+      the protocol clearer?
     </p>
 
-    <img src="images/advanced.jpg" alt="Advanced tag detail">
-  </section>
+    <div class="label-lab">
+      <div class="controls">
+        <label for="areaInput">Area name</label>
+        <input id="areaInput" type="text" maxlength="28" placeholder="e.g. FRAGILE PRINTS">
 
-  <section>
-    <div class="small-title">Tap to Read the Protocol</div>
-    <h2>What Should Happen Here?</h2>
-    <p>
-      In the room, visitors see boxes and labels. On this webpage, they can read the hidden
-      action behind each label.
-    </p>
+        <label for="belongsInput">What should go here?</label>
+        <input id="belongsInput" type="text" maxlength="48" placeholder="e.g. prints that should not be touched">
 
-    <button class="protocol-button" onclick="showProtocol('beds')">CLEAN BEDS</button>
-    <div id="beds" class="protocol-text">
-      Take one before printing. Return only clean printer beds here.
+        <label for="actionInput">What action should this area suggest?</label>
+        <input id="actionInput" type="text" maxlength="58" placeholder="e.g. ask the owner before removing">
+      </div>
+
+      <div class="preview-zone">
+        <img src="images/advanced.jpg" alt="Preview of a box with a user-generated label">
+
+        <div class="virtual-sign">
+          <div class="area" id="areaPreview">FRAGILE PRINTS</div>
+          <div class="belongs" id="belongsPreview">prints that should not be touched</div>
+          <div class="action" id="actionPreview">ask the owner before removing</div>
+        </div>
+      </div>
     </div>
 
-    <button class="protocol-button" onclick="showProtocol('tools')">TOOLS</button>
-    <div id="tools" class="protocol-text">
-      Use these tools to remove prints from the bed. Return them here after use.
-      Do not put support waste here.
-    </div>
-
-    <button class="protocol-button" onclick="showProtocol('prints')">FINISHED PRINTS</button>
-    <div id="prints" class="protocol-text">
-      Temporary storage for other users’ finished prints. Leave a name, date,
-      or note if needed.
-    </div>
-  </section>
-
-  <section>
-    <div class="small-title">What the Webpage Adds</div>
-    <h2>A Second Layer of Reading</h2>
-    <p>
-      The webpage adds a second layer of reading to the site. In the room, visitors see boxes
-      and labels. On the webpage, they can understand the hidden protocol behind those labels.
-      The page shows that the project is not simply about organizing objects, but about making
-      an existing rule readable.
+    <p class="small" style="margin-top: 24px;">
+      This interaction does not save or share your input. It only lets you test how a new label
+      could change the way this space is read.
     </p>
   </section>
 
-  <section class="quote-section">
-    <div class="quote">
-      I did not change the use of the boxes. I made their existing use visible.
+  <section class="final">
+    <div class="section-label">08 / Reflection</div>
+    <h2>Arrangement as Instruction</h2>
+    <p>
+      This project is not simply about organizing a room. It asks how much behavior can be guided
+      by the configuration of space.
+    </p>
+
+    <div class="big-quote">
+      A shelf is not just storage.<br>
+      A box is not just a container.<br>
+      A label is not just a name.<br>
+      Together, they become a quiet instruction.
     </div>
   </section>
 
@@ -337,11 +719,63 @@
     <p>Gyuri Kim · DS1(A) Protocol · N25 3D Printing Room</p>
   </footer>
 
+  <div id="popup" class="popup">
+    <button class="close-popup" onclick="closePopup()" aria-label="Close popup">×</button>
+    <h3 id="popupTitle"></h3>
+    <p id="popupText"></p>
+  </div>
+
   <script>
-    function showProtocol(id) {
-      const selected = document.getElementById(id);
-      selected.classList.toggle("active");
+    const protocolData = {
+      beds: {
+        title: "CLEAN BEDS",
+        text: "Take one when you start printing. Return only clean printer beds here."
+      },
+      tools: {
+        title: "TOOLS",
+        text: "Use these to remove prints. Return them here. Do not use this box as a dumping area."
+      },
+      prints: {
+        title: "FINISHED PRINTS",
+        text: "A place for prints that have been removed. But the harder question is: who feels allowed to remove them?"
+      }
+    };
+
+    function openPopup(type) {
+      document.getElementById("popupTitle").textContent = protocolData[type].title;
+      document.getElementById("popupText").textContent = protocolData[type].text;
+      document.getElementById("popup").classList.add("active");
     }
+
+    function closePopup() {
+      document.getElementById("popup").classList.remove("active");
+    }
+
+    const areaInput = document.getElementById("areaInput");
+    const belongsInput = document.getElementById("belongsInput");
+    const actionInput = document.getElementById("actionInput");
+
+    const areaPreview = document.getElementById("areaPreview");
+    const belongsPreview = document.getElementById("belongsPreview");
+    const actionPreview = document.getElementById("actionPreview");
+
+    areaInput.addEventListener("input", function () {
+      areaPreview.textContent = areaInput.value || "FRAGILE PRINTS";
+    });
+
+    belongsInput.addEventListener("input", function () {
+      belongsPreview.textContent = belongsInput.value || "prints that should not be touched";
+    });
+
+    actionInput.addEventListener("input", function () {
+      actionPreview.textContent = actionInput.value || "ask the owner before removing";
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closePopup();
+      }
+    });
   </script>
 
 </body>
